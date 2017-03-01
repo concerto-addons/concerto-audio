@@ -12,5 +12,4 @@ function initializeConcertoAudioHandler() {
   }
 }
 
-$(document).ready(initializeConcertoAudioHandler);
-$(document).on('page:change', initializeConcertoAudioHandler);
+$(document).on('turbolinks:load', initializeConcertoAudioHandler);
