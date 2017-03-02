@@ -1,16 +1,18 @@
 
-var ConcertoAudioHandlerInitialized = false;
+var ConcertoAudio = {
+  _initialized: false,
 
-function initializeConcertoAudioHandler() {
-  if (!ConcertoAudioHandlerInitialized) {
-    $('input#audio_config_url').on("keyup", function (e) {
-      var a = $('<audio>', { controls: 'controls', preload: 'none', src: $('input#audio_config_url').val() });
-      $("#preview_div").empty().append(a);
-    });
+  initHandlers: function () {
+    if (!ConcertoAudio._initialized) {
+      $('input#audio_config_url').on("keyup", function (e) {
+        var a = $('<audio>', { controls: 'controls', preload: 'none', src: $('input#audio_config_url').val() });
+        $("#preview_div").empty().append(a);
+      });
 
-    ConcertoAudioHandlerInitialized = true;
+      ConcertoAudio._initialized = true;
+    }
   }
-}
+};
 
-$(document).ready(initializeConcertoAudioHandler);
-$(document).on('page:change', initializeConcertoAudioHandler);
+$(document).ready(ConcertoAudio.initHandlers);
+$(document).on('turbolinks:load', ConcertoAudio.initHandlers);
